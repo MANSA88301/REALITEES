@@ -245,10 +245,9 @@ footer .social { display: flex; gap: 14px; flex-wrap: wrap; }
 .work.tone-0 { background: color-mix(in srgb, var(--spot) 10%, var(--paper)); }
 .work.tone-1 { background: color-mix(in srgb, var(--pink) 18%, var(--paper)); }
 .work.tone-2 { background: color-mix(in srgb, var(--ink) 7%, var(--paper)); }
-.work img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.work.has-img { min-height: 0; align-content: start; grid-template-rows: auto 1fr; background: var(--paper); }
+.work img { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 2 / 3; align-self: start; object-fit: cover; border-bottom: 1px solid var(--rule); }
 .work-text { position: relative; padding: 18px; display: grid; gap: 6px; }
-.work img + .work-text { background: linear-gradient(transparent, rgba(0,0,0,.72)); color: #fff; }
-.work img + .work-text .label { color: rgba(255,255,255,.8); }
 .work h3 { font-size: var(--step-1); font-weight: 800; letter-spacing: -0.01em; }
 .vault-grid .panel p { color: var(--ink-soft); }
 .cta-band { background: var(--ink); color: var(--cotton); text-align: center; }

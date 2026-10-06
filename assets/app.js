@@ -52,8 +52,8 @@
   // Portfolio
   $("#portfolio").innerHTML = S.portfolio
     .map(
-      (w, i) => `<article class="work tone-${i % 3}">
-        ${isLocalAsset(w.image) ? `<img src="${esc(w.image)}" alt="${esc(w.title)}" loading="lazy">` : ""}
+      (w, i) => `<article class="work tone-${i % 3}${isLocalAsset(w.image) ? " has-img" : ""}">
+        ${isLocalAsset(w.image) ? `<img src="${esc(w.image)}" alt="${esc(w.title + " — " + w.category + " design by Realiteez (watermarked preview)")}" width="600" height="900" loading="lazy">` : ""}
         <div class="work-text"><span class="label">${esc(w.category)}</span><h3>${esc(w.title)}</h3></div>
       </article>`
     )

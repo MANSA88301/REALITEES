@@ -77,16 +77,16 @@ window.SITE = Object.freeze({
   ],
 
   // "This is the work." portfolio of real Realiteez pieces.
-  // Add image: "/assets/work/<file>.jpg" to show a photo on a tile.
+  // image: a reduced-resolution, watermarked preview in /assets/work/ (never the clean print file).
   portfolio: [
     { category: "Memorial & legacy", title: "Rest in Peace Dad", image: "" },
     { category: "Back-to-school custom", title: "Marcus: School Is in Session", image: "" },
-    { category: "Kids first-day custom", title: "Hi, I’m Dior", image: "" },
-    { category: "Personal statement piece", title: "Alpha Male", image: "" },
-    { category: "Youth brand apparel", title: "Wear the Crown", image: "" },
-    { category: "Cultural heritage", title: "Faith With Action", image: "" },
+    { category: "Kids first-day custom", title: "Hi, I’m Dior", image: "/assets/work/hi-im-dior.webp" },
+    { category: "Personal statement piece", title: "Alpha Male", image: "/assets/work/alpha-male.webp" },
+    { category: "Youth brand apparel", title: "Wear the Crown", image: "/assets/work/wear-the-crown.webp" },
+    { category: "Cultural heritage", title: "Faith With Action", image: "/assets/work/faith-with-action.webp" },
     { category: "Historical tribute", title: "Marcus Garvey", image: "" },
-    { category: "Family & fraternity legacy", title: "Coming of Age", image: "" },
+    { category: "Family & fraternity legacy", title: "Coming of Age", image: "/assets/work/coming-of-age.webp" },
   ],
 
   vault: [
