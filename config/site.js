@@ -13,8 +13,8 @@ window.SITE = Object.freeze({
       "Custom apparel with a creator-first process — personalized designs, DIY print service and original printed tees, all under one roof.",
     url: "https://realiteez-custom-creations.vercel.app",
     // Hero photo, e.g. "/assets/hero.jpg". Empty = the illustrated tee shows instead.
-    heroImage: "",
-    heroImageAlt: "Realiteez crew wearing custom painted tees in front of a graffiti wall",
+    heroImage: "/assets/hero.webp",
+    heroImageAlt: "Seven people in Realiteez custom painted tees in front of a Realiteez Custom Creations graffiti wall",
   },
 
   // Leave a field empty ("") to hide it on the site.

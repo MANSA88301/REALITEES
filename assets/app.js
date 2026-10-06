@@ -15,7 +15,8 @@
   if (isLocalAsset(S.brand.heroImage)) {
     const v = $("#hero-visual");
     v.removeAttribute("aria-hidden");
-    v.innerHTML = `<img class="hero-photo" src="${esc(S.brand.heroImage)}" alt="${esc(S.brand.heroImageAlt || "")}">`;
+    v.closest(".hero").classList.add("has-photo");
+    v.innerHTML = `<img class="hero-photo" src="${esc(S.brand.heroImage)}" alt="${esc(S.brand.heroImageAlt || "")}" width="1593" height="987" fetchpriority="high">`;
   }
 
   // Lanes

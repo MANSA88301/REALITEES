@@ -205,7 +205,7 @@ footer .social { display: flex; gap: 14px; flex-wrap: wrap; }
 .hero .btn { border-radius: 0; text-transform: uppercase; letter-spacing: 0.08em; }
 .badges { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 28px; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; }
 .badges span::before { content: "✓"; display: inline-grid; place-items: center; width: 18px; height: 18px; margin-right: 8px; border: 1.5px solid currentColor; border-radius: 50%; font-size: 0.65rem; }
-.hero-photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; max-width: 100%; }
+
 .pink-season { background: color-mix(in srgb, var(--pink) 14%, var(--cotton)); border-block: 2px solid var(--pink); }
 .pink-season h2 em { font-style: normal; color: var(--pink); }
 .fly { font-family: var(--f-display); font-weight: 900; font-size: clamp(3rem, 12vw, 8rem); letter-spacing: -0.05em; line-height: 0.85; color: var(--pink); }
@@ -255,3 +255,16 @@ footer .social { display: flex; gap: 14px; flex-wrap: wrap; }
 .cta-band .wrap { display: grid; justify-items: center; gap: 18px; }
 .cta-band .label { color: color-mix(in srgb, var(--cotton) 60%, transparent); }
 .cta-band h2 { font-size: clamp(2.2rem, 6vw, 4.4rem); font-weight: 900; letter-spacing: -0.04em; max-width: 16ch; }
+
+/* Hero with photo: image bleeds off the right edge and fades into the cream ground */
+.hero.has-photo .wrap { position: static; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.hero.has-photo .wrap > div:first-child { position: relative; z-index: 1; }
+.hero.has-photo .hero-tee { position: absolute; inset: 0 0 0 auto; width: 64%; justify-self: auto; }
+.hero-photo { display: block; width: 100%; height: 100%; max-width: 100%; object-fit: cover; object-position: 52% center;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 28%); mask-image: linear-gradient(to right, transparent 0%, #000 28%); }
+@media (max-width: 760px) {
+  .hero.has-photo { padding-top: 0; }
+  .hero.has-photo .wrap { grid-template-columns: 1fr; padding-top: 0; }
+  .hero.has-photo .hero-tee { position: relative; inset: auto; width: calc(100% + 2 * var(--gutter)); margin-inline: calc(-1 * var(--gutter)); order: -1; aspect-ratio: 16 / 10; max-width: none; }
+  .hero-photo { -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%); mask-image: linear-gradient(to bottom, #000 70%, transparent 100%); }
+}
