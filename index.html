@@ -18,8 +18,6 @@
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
-  <div class="sample" id="sample" hidden>Preview — products and prices shown are samples until the full Realiteez lineup is added.</div>
-
   <div class="promo" role="region" aria-label="Current collection">
     <div class="wrap">
       <span class="side">October Awareness Collection</span>
@@ -33,7 +31,7 @@
       <a class="logo" href="#top" aria-label="Realiteez Custom Creations home"><b>REALITEEZ<sup>®</sup></b><small>CUSTOM CREATIONS</small></a>
       <nav class="nav" aria-label="Main">
         <a href="#pink-season">Pink Season</a>
-        <a href="#shop">Collections</a>
+        <a href="#collections">Collections</a>
         <a href="#order">Create Your Tee</a>
         <a href="#diy">DIY Prints</a>
         <a href="#status">Order Status</a>
@@ -68,123 +66,99 @@
       </div>
     </section>
 
-    <section class="pink-season" id="pink-season" aria-labelledby="pink-title">
-      <div class="wrap split">
-        <div>
-          <p class="label">October Awareness Collection</p>
-          <h2 id="pink-title">Pink Season is <em>here.</em></h2>
-          <p style="margin-top:14px;max-width:46ch">First Love Yourself. The F.L.Y. collection is made for awareness month — wear it for yourself, for someone you love, and for everyone still fighting.</p>
-          <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px">
-            <a class="btn btn-spot" href="#shop">Shop Pink Season</a>
-            <a class="btn" href="#order">Make a custom pink tee</a>
-          </div>
+    <section id="lanes" aria-labelledby="lanes-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div><p class="label">Choose your lane</p><h2 id="lanes-title">One shop. Three ways to create.</h2></div>
+          <p>Start with your vision, your finished file, or one of ours. We make the path clear before anything goes to print.</p>
         </div>
-        <p class="fly" aria-hidden="true">F.L.Y.</p>
+        <div class="lanes" id="lane-list"></div>
+      </div>
+    </section>
+
+    <section class="pink-season" id="pink-season" aria-labelledby="pink-title">
+      <div class="wrap">
+        <div class="split">
+          <div>
+            <p class="label">October Awareness Collection · Limited seasonal focus</p>
+            <h2 id="pink-title">Pink means <em>power</em> here.</h2>
+            <p class="lead">The F.L.Y. collection centers self-love, healing and strength.</p>
+            <p style="max-width:52ch;color:var(--ink-soft)">Choose one of the current designs or request a personalized Pink Season piece for a survivor, team, family or special event.</p>
+          </div>
+          <p class="fly" aria-hidden="true">F.L.Y.</p>
+        </div>
+        <div class="designs" id="pink-designs"></div>
+        <p class="notice"><b>Protected catalog previews.</b> Only reduced-resolution files with permanent Realiteez watermarks are shown publicly. Clean artwork is never delivered from this page. Campaign themes and products may change for holidays, awareness months and special events.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="make-title">
+      <div class="wrap split" style="align-items:start">
+        <div>
+          <p class="label">Built around your story</p>
+          <h2 id="make-title">Choose it. Make it yours.</h2>
+          <p style="margin-top:14px;color:var(--ink-soft);max-width:52ch">Start with an approved Realiteez design, enter only the details that belong to that template, and receive a protected proof before anything moves to production.</p>
+          <ul class="checklist" id="checklist"></ul>
+        </div>
+        <div class="guardrails">
+          <p class="label">Production guardrails</p>
+          <h3>Proof first.<br>Print second.</h3>
+          <p>Card details are never collected on this site. Production stays locked until payment is verified, you approve your proof, and Realiteez approves production.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="collections" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div><p class="label">Made by Realiteez</p><h2 id="work-title">This is the work.</h2></div>
+          <p>Real people. Real moments. Original custom graphics built for remembrance, first days, brands, culture, family and legacy.</p>
+        </div>
+        <div class="portfolio" id="portfolio"></div>
+      </div>
+    </section>
+
+    <section id="vault" aria-labelledby="vault-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div><p class="label">🔒 Design Vault · Private by default</p><h2 id="vault-title">Your work stays your work.</h2></div>
+          <p>Customer artwork is treated as confidential production material, not store content. Every upload is kept separate from the public shop.</p>
+        </div>
+        <div class="vault-grid" id="vault-list"></div>
       </div>
     </section>
 
     <section id="how" aria-labelledby="how-title">
       <div class="wrap">
         <div class="section-head">
-          <div><p class="label">How it works</p><h2 id="how-title">Three steps to your shirt</h2></div>
-          <p>No design skills needed. You bring the idea; we handle artwork, proofing, and printing.</p>
+          <div><p class="label">From thought to thread</p><h2 id="how-title">A clean four-step process.</h2></div>
         </div>
         <div class="steps" id="steps"></div>
-      </div>
-    </section>
-
-    <section id="shop" aria-labelledby="shop-title">
-      <div class="wrap">
-        <div class="section-head">
-          <div><p class="label">Shop</p><h2 id="shop-title">What we make</h2></div>
-          <p>Every piece is printed to order. Pick a starting point, then make it yours.</p>
-        </div>
-        <div class="products" id="products"></div>
-      </div>
-    </section>
-
-    <section aria-labelledby="methods-title">
-      <div class="wrap">
-        <div class="section-head">
-          <div><p class="label">Print methods</p><h2 id="methods-title">The right print for the job</h2></div>
-          <p>Not sure which to choose? Tell us what you're making and we'll recommend one.</p>
-        </div>
-        <div class="methods-wrap">
-          <table class="methods">
-            <thead><tr><th scope="col">Method</th><th scope="col">Best for</th><th scope="col">Minimum</th></tr></thead>
-            <tbody id="methods"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section id="diy" aria-labelledby="diy-title">
-      <div class="wrap split">
-        <div>
-          <p class="label">DIY Prints</p>
-          <h2 id="diy-title">Already have your design? We print it.</h2>
-          <p style="margin-top:14px;color:var(--ink-soft);max-width:46ch">Send us print-ready artwork and pick your blanks. No design fee, no back-and-forth — just clean, durable prints.</p>
-        </div>
-        <div class="panel">
-          <h3>How DIY printing works</h3>
-          <ul>
-            <li>Upload or link your artwork (PNG, PDF, AI, SVG)</li>
-            <li>Choose garment, colors, sizes, and print placement</li>
-            <li>Approve your proof, then we print and ship</li>
-          </ul>
-          <a class="btn btn-spot" href="#order">Start a DIY print order</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="vault" aria-labelledby="vault-title" style="padding-top:0">
-      <div class="wrap split">
-        <div class="panel">
-          <p class="label">🔒 Design Vault</p>
-          <h3 id="vault-title" style="font-size:var(--step-2)">Your artwork stays yours.</h3>
-          <ul>
-            <li>Every design is handled privately and never resold</li>
-            <li>Approved artwork is kept on file for easy reorders</li>
-            <li>Creator-approved proofs before anything prints</li>
-          </ul>
-          <a class="btn" href="#order">Request vault access with your order</a>
-        </div>
-        <div id="status">
-          <p class="label">Order Status</p>
-          <h2>Check on your order</h2>
-          <p style="margin-top:14px;color:var(--ink-soft);max-width:46ch">Enter the order number from your confirmation and we'll send you an update.</p>
-          <form class="status-form" id="status-form" novalidate style="margin-top:16px">
-            <label for="order-number" class="label" style="flex-basis:100%">Order number</label>
-            <input id="order-number" name="order" required maxlength="40" placeholder="e.g. RTZ-1042">
-            <button class="btn btn-spot" type="submit">Check status</button>
-          </form>
-          <p class="form-status" id="status-msg" role="status" aria-live="polite" style="color:var(--ink)"></p>
-        </div>
       </div>
     </section>
 
     <section class="order" id="order" aria-labelledby="order-title">
       <div class="wrap order-grid">
         <div class="order-aside">
-          <p class="label">Custom order</p>
-          <h2 id="order-title">Create your tee</h2>
-          <p>We reply with a free mockup and an exact quote, usually within one business day.</p>
+          <p class="label">Create your tee</p>
+          <h2 id="order-title">Tell us what you want made.</h2>
+          <p>Personalized piece, DIY print, or a Pink Season design: start here and we'll follow up with your protected proof.</p>
           <ul>
-            <li>Free digital proof before anything prints</li>
-            <li>Help with design if you only have an idea</li>
-            <li>Bulk pricing from 24 pieces</li>
+            <li>Protected, watermarked proof before production</li>
+            <li>Private handling of your photos and artwork</li>
+            <li>Nothing prints until you approve</li>
           </ul>
         </div>
         <form id="order-form" novalidate>
           <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required maxlength="100"></div>
           <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="200"></div>
           <div class="field"><label for="phone">Phone (optional)</label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="30"></div>
-          <div class="field"><label for="item">Item</label><select id="item" name="item" required></select></div>
+          <div class="field"><label for="item">What are you creating?</label><select id="item" name="item" required></select></div>
           <div class="field"><label for="quantity">Quantity</label><input id="quantity" name="quantity" type="number" min="1" max="10000" value="1" required></div>
           <div class="field"><label for="deadline">Needed by (optional)</label><input id="deadline" name="deadline" type="date"></div>
-          <div class="field full"><label for="details">Describe your design</label><textarea id="details" name="details" required maxlength="3000" placeholder="Colors, text, sizes, front/back, and any links to your artwork."></textarea></div>
+          <div class="field full"><label for="details">Tell us about your design</label><textarea id="details" name="details" required maxlength="3000" placeholder="Names, dates, colors, sizes, front/back, and links to your photos or artwork (300 DPI preferred)."></textarea></div>
           <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" id="website">
-          <div class="field full"><button class="btn btn-spot" type="submit">Request my free proof</button></div>
+          <div class="field full"><button class="btn btn-spot" type="submit">Request my proof</button></div>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           <div class="fallback" id="fallback" hidden>
             <p id="fallback-to"></p>
@@ -195,10 +169,36 @@
       </div>
     </section>
 
+    <section id="status" aria-labelledby="status-title">
+      <div class="wrap split" style="align-items:start">
+        <div>
+          <p class="label">Order Status</p>
+          <h2 id="status-title">Check on your order</h2>
+          <p style="margin-top:14px;color:var(--ink-soft);max-width:46ch">Enter the order number from your confirmation and we'll send you an update.</p>
+        </div>
+        <div>
+          <form class="status-form" id="status-form" novalidate>
+            <label for="order-number" class="label" style="flex-basis:100%">Order number</label>
+            <input id="order-number" name="order" required maxlength="40" placeholder="e.g. RTZ-1042">
+            <button class="btn btn-spot" type="submit">Check status</button>
+          </form>
+          <p class="form-status" id="status-msg" role="status" aria-live="polite" style="color:var(--ink)"></p>
+        </div>
+      </div>
+    </section>
+
     <section id="faq-section" aria-labelledby="faq-title">
       <div class="wrap">
-        <div class="section-head"><div><p class="label">FAQ</p><h2 id="faq-title">Questions, answered</h2></div></div>
+        <div class="section-head"><div><p class="label">Before you order</p><h2 id="faq-title">Clear answers.</h2></div></div>
         <div class="faq" id="faq"></div>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="cta-title">
+      <div class="wrap">
+        <p class="label">No generic energy.</p>
+        <h2 id="cta-title">Let’s make the tee people ask about.</h2>
+        <a class="btn btn-spot" href="#order">Start creating →</a>
       </div>
     </section>
   </main>
@@ -207,7 +207,7 @@
     <div class="wrap">
       <div>
         <a class="logo" href="#top"><b>REALITEEZ<sup>®</sup></b><small>CUSTOM CREATIONS</small></a>
-        <p class="fine">Custom Creations · Wear what is real to you.</p>
+        <p class="fine">Custom Creations · Personalized Apparel · DIY Prints</p>
       </div>
       <div class="contact" id="contact"></div>
       <div class="social" id="social"></div>

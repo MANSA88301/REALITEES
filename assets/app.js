@@ -7,75 +7,65 @@
   const esc = (v) =>
     String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   const isSafeUrl = (u) => /^https:\/\//i.test(String(u || ""));
-
-  const TEE_PATH =
-    "M38 8 L58 2 C62 12 78 16 90 16 C102 16 118 12 122 2 L142 8 L176 30 L160 62 L140 52 L140 158 L40 158 L40 52 L20 62 L4 30 Z";
-  const tee = (fill) =>
-    `<svg viewBox="0 0 180 162" aria-hidden="true"><path d="${TEE_PATH}" fill="${esc(fill)}" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>`;
-
-  const money = (p) => (p > 0 ? `$${Number(p).toFixed(0)}` : "Quote");
-
-  // Sample banner
-  if (S.isSampleContent) {
-    const b = $("#sample");
-    b.hidden = false;
-  }
+  const isLocalAsset = (u) => /^\/assets\/[\w./-]+$/.test(String(u || ""));
+  const c = S.contact;
+  const productSelect = $("#item");
 
   // Hero photo (optional)
-  if (S.brand.heroImage) {
+  if (isLocalAsset(S.brand.heroImage)) {
     const v = $("#hero-visual");
     v.removeAttribute("aria-hidden");
     v.innerHTML = `<img class="hero-photo" src="${esc(S.brand.heroImage)}" alt="${esc(S.brand.heroImageAlt || "")}">`;
   }
 
-  // Steps
-  $("#steps").innerHTML = S.steps
+  // Lanes
+  $("#lane-list").innerHTML = S.lanes
     .map(
-      (s, i) => `<div class="step"><span class="n">${i + 1}</span><h3>${esc(s.title)}</h3><p>${esc(s.body)}</p></div>`
+      (l, i) => `<article class="lane" id="${esc(l.anchor)}">
+        <span class="n">0${i + 1}</span>
+        <h3>${esc(l.title)}</h3>
+        <p>${esc(l.body)}</p>
+        ${
+          l.href
+            ? `<a class="lane-cta" href="${esc(l.href)}">${esc(l.cta)} →</a>`
+            : `<button class="lane-cta" type="button" data-order="${esc(l.orderItem)}">${esc(l.cta)} →</button>`
+        }
+      </article>`
     )
     .join("");
 
-  // Products
-  const productSelect = $("#item");
-  $("#products").innerHTML = S.products
-    .map((p) => {
-      const buy = isSafeUrl(p.paymentLink)
-        ? `<a class="btn btn-spot btn-sm" href="${esc(p.paymentLink)}" target="_blank" rel="noopener">Buy now</a>`
-        : `<button class="btn btn-sm" type="button" data-customize="${esc(p.id)}">${p.price > 0 ? "Customize" : "Get a quote"}</button>`;
-      return `<article class="card">
-        <div class="chip" style="color:var(--ink)">${tee(p.swatch)}<span class="hex">${esc(String(p.swatch).toUpperCase())}</span></div>
-        <div class="body">
-          <h3>${esc(p.name)}</h3>
-          <p class="mono spec">${esc(p.spec)}</p>
-          <p>${esc(p.blurb)}</p>
-          <div class="tags">${p.methods.map((m) => `<span class="tag">${esc(m)}</span>`).join("")}</div>
-        </div>
-        <div class="foot">
-          <span class="price">${p.price > 0 && p.priceNote === "from" ? "<small>from</small>" : ""}${money(p.price)}${
-        p.price > 0 && p.priceNote !== "from" ? ` <small>${esc(p.priceNote)}</small>` : ""
-      }</span>
-          ${buy}
-        </div>
-      </article>`;
-    })
+  // Pink Season designs
+  $("#pink-designs").innerHTML = S.pinkSeason.designs
+    .map(
+      (d) => `<article class="design">
+        <span class="label">F.L.Y.</span>
+        <h3>${esc(d)}</h3>
+        <button class="lane-cta" type="button" data-order="${esc("Pink Season: " + d)}">Personalize →</button>
+      </article>`
+    )
     .join("");
-  productSelect.innerHTML =
-    `<option value="">Choose an item</option>` +
-    S.products.map((p) => `<option value="${esc(p.name)}">${esc(p.name)}</option>`).join("") +
-    `<option value="Something else">Something else</option>`;
 
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-customize]");
-    if (!btn) return;
-    const p = S.products.find((x) => x.id === btn.dataset.customize);
-    if (p) productSelect.value = p.name;
-    $("#order").scrollIntoView({ behavior: "smooth" });
-    setTimeout(() => $("#name").focus({ preventScroll: true }), 400);
-  });
+  // Checklist
+  $("#checklist").innerHTML = S.checklist.map((x) => `<li>${esc(x)}</li>`).join("");
 
-  // Methods
-  $("#methods").innerHTML = S.methods
-    .map((m) => `<tr><td>${esc(m.name)}</td><td>${esc(m.best)}</td><td class="mono">${esc(m.min)}</td></tr>`)
+  // Portfolio
+  $("#portfolio").innerHTML = S.portfolio
+    .map(
+      (w, i) => `<article class="work tone-${i % 3}">
+        ${isLocalAsset(w.image) ? `<img src="${esc(w.image)}" alt="${esc(w.title)}" loading="lazy">` : ""}
+        <div class="work-text"><span class="label">${esc(w.category)}</span><h3>${esc(w.title)}</h3></div>
+      </article>`
+    )
+    .join("");
+
+  // Vault
+  $("#vault-list").innerHTML = S.vault
+    .map((v) => `<div class="panel"><h3>${esc(v.title)}</h3><p>${esc(v.body)}</p></div>`)
+    .join("");
+
+  // Steps
+  $("#steps").innerHTML = S.steps
+    .map((s, i) => `<div class="step"><span class="n">0${i + 1}</span><h3>${esc(s.title)}</h3><p>${esc(s.body)}</p></div>`)
     .join("");
 
   // FAQ
@@ -83,13 +73,30 @@
     .map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`)
     .join("");
 
+  // Order form item choices
+  const items = [
+    ...S.lanes.filter((l) => l.orderItem).map((l) => l.orderItem),
+    ...S.pinkSeason.designs.map((d) => "Pink Season: " + d),
+    "Printed tee",
+    "Something else",
+  ];
+  productSelect.innerHTML =
+    `<option value="">Choose one</option>` + items.map((x) => `<option value="${esc(x)}">${esc(x)}</option>`).join("");
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-order]");
+    if (!btn) return;
+    productSelect.value = btn.dataset.order;
+    $("#order").scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => $("#name").focus({ preventScroll: true }), 400);
+  });
+
   // Contact + socials
-  const c = S.contact;
   const contactLines = [];
   if (c.email) contactLines.push(`<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>`);
   if (c.phone) contactLines.push(`<a href="tel:${esc(c.phone.replace(/[^\d+]/g, ""))}">${esc(c.phone)}</a>`);
   if (c.city) contactLines.push(`<span>${esc(c.city)}</span>`);
-  if (!contactLines.length) contactLines.push(`<span>Use the custom order form to reach us.</span>`);
+  if (!contactLines.length) contactLines.push(`<span>Use the Create Your Tee form to reach us.</span>`);
   $("#contact").innerHTML = contactLines.join("");
   const socials = [
     ["Instagram", c.instagram],
@@ -101,6 +108,12 @@
     .join("");
   $("#year").textContent = new Date().getFullYear();
 
+  // Shared submit helper
+  const postForm = async (data) => {
+    const res = await fetch(S.formEndpoint, { method: "POST", body: data, headers: { Accept: "application/json" } });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+  };
+
   // Order form
   const form = $("#order-form");
   const status = $("#form-status");
@@ -111,11 +124,11 @@
   };
   const summarize = (data) =>
     [
-      `Custom order request — ${S.brand.name}`,
+      `Order request — ${S.brand.name}`,
       `Name: ${data.get("name")}`,
       `Email: ${data.get("email")}`,
       `Phone: ${data.get("phone") || "-"}`,
-      `Item: ${data.get("item")}`,
+      `Creating: ${data.get("item")}`,
       `Quantity: ${data.get("quantity")}`,
       `Needed by: ${data.get("deadline") || "-"}`,
       ``,
@@ -142,10 +155,9 @@
     btn.disabled = true;
     setStatus("Sending…");
     try {
-      const res = await fetch(S.formEndpoint, { method: "POST", body: data, headers: { Accept: "application/json" } });
-      if (!res.ok) throw new Error("HTTP " + res.status);
+      await postForm(data);
       form.reset();
-      setStatus("Request received. We'll reply with a proof and quote within 1 business day.", "ok");
+      setStatus("Request received. We'll follow up with your protected proof.", "ok");
     } catch (err) {
       console.error("Order form submit failed:", err);
       setStatus("That didn't go through. Check your connection and try again.", "err");
@@ -189,8 +201,7 @@
       const data = new FormData();
       data.append("type", "order-status");
       data.append("order", num);
-      const res = await fetch(S.formEndpoint, { method: "POST", body: data, headers: { Accept: "application/json" } });
-      if (!res.ok) throw new Error("HTTP " + res.status);
+      await postForm(data);
       msg.textContent = `Got it. We'll send an update on order ${num} soon.`;
     } catch (err) {
       console.error("Order status request failed:", err);
@@ -209,14 +220,6 @@
     ...(c.phone && { telephone: c.phone }),
     ...(c.city && { address: { "@type": "PostalAddress", addressLocality: c.city } }),
     sameAs: socials.map(([, u]) => u),
-    makesOffer: S.products
-      .filter((p) => p.price > 0)
-      .map((p) => ({
-        "@type": "Offer",
-        priceCurrency: "USD",
-        price: p.price,
-        itemOffered: { "@type": "Product", name: p.name, description: p.blurb },
-      })),
   };
   const tag = document.createElement("script");
   tag.type = "application/ld+json";

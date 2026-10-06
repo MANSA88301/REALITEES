@@ -1,18 +1,13 @@
 /*
  * Realiteez Custom Creations — site content.
  *
- * This is the ONLY file you need to edit to change products, prices,
- * payment links, contact info, and the order form destination.
- *
- * isSampleContent: while true, a banner tells visitors the catalog is a
- * preview. Set it to false once the real products and prices are in.
+ * This is the ONLY file you need to edit to change copy, collections,
+ * contact info, and the order form destination. Content below comes from
+ * the live Realiteez site.
  */
 window.SITE = Object.freeze({
-  isSampleContent: true,
-
   brand: {
     name: "Realiteez Custom Creations",
-    shortName: "Realiteez",
     tagline: "Your idea. Your tee. Your Realiteez.",
     pitch:
       "Custom apparel with a creator-first process — personalized designs, DIY print service and original printed tees, all under one roof.",
@@ -32,98 +27,97 @@ window.SITE = Object.freeze({
     facebook: "",
   },
 
-  // Where the custom-order form sends requests.
+  // Where the order and order-status forms send requests.
   // Paste a Formspree / Basin / Getform endpoint, e.g. "https://formspree.io/f/abcdwxyz".
-  // Empty = the form shows the visitor how to send the request by email instead.
+  // Empty = the form shows the visitor how to send the request instead.
   formEndpoint: "",
 
-  // Each product: paymentLink is a Stripe Payment Link (https://buy.stripe.com/...).
-  // Empty paymentLink = the button opens the custom-order form for that item.
-  products: [
+  // "Choose your lane" — the three ways to create.
+  lanes: [
     {
-      id: "classic-tee",
-      name: "Classic Custom Tee",
-      price: 25,
-      priceNote: "from",
-      spec: "6.1 oz ringspun cotton · S–4XL",
-      methods: ["Screen print", "DTG"],
-      blurb: "Your art, front and back. Soft hand-feel, built to survive the wash.",
-      swatch: "#1d1d1f",
-      paymentLink: "",
+      id: "personalized",
+      anchor: "personalized",
+      title: "Personalized creations",
+      body: "Names, memorials, birthdays, teams, reunions and one-of-one statement pieces — built with you, not pulled from a template.",
+      cta: "Start a custom design",
+      orderItem: "Personalized creation",
     },
     {
-      id: "heavy-hoodie",
-      name: "Heavyweight Hoodie",
-      price: 55,
-      priceNote: "from",
-      spec: "10 oz fleece · S–3XL",
-      methods: ["Screen print", "Embroidery"],
-      blurb: "Thick, warm, and boxy. Embroidered chest hits or full-back prints.",
-      swatch: "#4a5a3c",
-      paymentLink: "",
+      id: "diy",
+      anchor: "diy",
+      title: "DIY print lab",
+      body: "Bring your finished artwork. Choose the garment, placement and quantity, then send it through the protected Design Vault.",
+      cta: "Print my artwork",
+      orderItem: "DIY print",
     },
     {
-      id: "memorial-tee",
-      name: "Memorial & Tribute Tee",
-      price: 30,
-      priceNote: "from",
-      spec: "Photo-quality DTG · all sizes",
-      methods: ["DTG"],
-      blurb: "Honor someone you love with a photo tee the whole family can wear.",
-      swatch: "#f4f4f2",
-      paymentLink: "",
+      id: "printed",
+      anchor: "printed",
+      title: "Printed tees",
+      body: "Shop original Realiteez drops and ready-to-wear graphics with the same bold print quality as our custom work.",
+      cta: "Browse printed tees",
+      href: "#collections",
     },
-    {
-      id: "event-pack",
-      name: "Event & Team Pack",
-      price: 18,
-      priceNote: "per shirt, 24+",
-      spec: "Bulk pricing · mixed sizes",
-      methods: ["Screen print"],
-      blurb: "Reunions, birthdays, teams, launches. One design, everyone matching.",
-      swatch: "#b8322a",
-      paymentLink: "",
-    },
-    {
-      id: "brand-merch",
-      name: "Brand Merch Drop",
-      price: 0,
-      priceNote: "quote",
-      spec: "Tees · hoodies · hats · totes",
-      methods: ["Screen print", "Embroidery", "DTG"],
-      blurb: "Launch your clothing line or business merch with tags and packaging.",
-      swatch: "#2c4a7a",
-      paymentLink: "",
-    },
-    {
-      id: "one-of-one",
-      name: "One-of-One Piece",
-      price: 40,
-      priceNote: "from",
-      spec: "Hand-finished · single garment",
-      methods: ["DTG", "Embroidery"],
-      blurb: "A single custom piece made just for you. Gifts, birthdays, statements.",
-      swatch: "#d9a521",
-      paymentLink: "",
-    },
+  ],
+
+  pinkSeason: {
+    designs: ["You Are Becoming", "Heal. Love. Fly.", "She Fought. She Won. She F.L.Y."],
+  },
+
+  // "Choose it. Make it yours." feature checklist.
+  checklist: [
+    "Template-specific personalization",
+    "Private customer photo handling",
+    "Protected watermarked proofs",
+    "Realistic garment preview",
+    "Names, numbers, dates and colors",
+    "Required-field validation",
+    "Secure order summary",
+    "Mobile-ready creation flow",
+  ],
+
+  // "This is the work." portfolio of real Realiteez pieces.
+  // Add image: "/assets/work/<file>.jpg" to show a photo on a tile.
+  portfolio: [
+    { category: "Memorial & legacy", title: "Rest in Peace Dad", image: "" },
+    { category: "Back-to-school custom", title: "Marcus: School Is in Session", image: "" },
+    { category: "Kids first-day custom", title: "Hi, I’m Dior", image: "" },
+    { category: "Personal statement piece", title: "Alpha Male", image: "" },
+    { category: "Youth brand apparel", title: "Wear the Crown", image: "" },
+    { category: "Cultural heritage", title: "Faith With Action", image: "" },
+    { category: "Historical tribute", title: "Marcus Garvey", image: "" },
+    { category: "Family & fraternity legacy", title: "Coming of Age", image: "" },
+  ],
+
+  vault: [
+    { title: "Private workspace", body: "Your original files are kept apart from the public shop." },
+    { title: "Order-only files", body: "Files are used only to complete your order." },
+    { title: "No public gallery", body: "No public gallery or automatic sharing of customer artwork." },
   ],
 
   steps: [
-    { title: "Send your idea", body: "A sketch, a photo, a phrase, or a finished logo. Tell us the item, colors, and quantity." },
-    { title: "Approve your proof", body: "We send a digital mockup. You request changes until it is exactly right." },
-    { title: "We print and ship", body: "Your order is printed, checked, and shipped or ready for pickup." },
-  ],
-
-  methods: [
-    { name: "Screen print", best: "Bold colors, bulk orders", min: "12+ pieces" },
-    { name: "DTG", best: "Photos, full-color art", min: "1+ piece" },
-    { name: "Embroidery", best: "Logos, hats, premium look", min: "6+ pieces" },
+    { title: "Choose", body: "Select a Realiteez template, DIY print service, or ready-made tee." },
+    { title: "Personalize", body: "Add only the names, photos, colors and details supported by that design." },
+    { title: "Approve", body: "Review and approve the exact protected proof before production." },
+    { title: "Wear", body: "Receive a finished Realiteez piece made for the moment." },
   ],
 
   faq: [
-    { q: "Is there a minimum order?", a: "No minimum for DTG and one-of-one pieces. Screen printing starts at 12 pieces; embroidery at 6." },
-    { q: "How long does it take?", a: "Most orders ship 5–10 business days after you approve your proof. Rush options are available — ask in your request." },
-    { q: "I don't have a design. Can you help?", a: "Yes. Describe your idea and we will design it for you. Simple layouts are included; complex artwork is quoted up front." },
-    { q: "What files should I send?", a: "PNG, PDF, AI, or SVG at the highest quality you have. A phone photo of a sketch is fine to start." },
+    {
+      q: "Will my sample look exactly like the selected design?",
+      a: "Each sample has its own locked Realiteez style master. Your approved fields change while the template’s composition and finish remain protected.",
+    },
+    {
+      q: "When does production begin?",
+      a: "Only after payment is confirmed, you approve the current proof, Realiteez approves production and the correct production route is ready.",
+    },
+    {
+      q: "What image quality should I upload?",
+      a: "Use the clearest original JPG or transparent PNG available. 300 DPI is preferred for print.",
+    },
+    {
+      q: "How is my photograph protected?",
+      a: "Customer files stay private. Public and customer-facing proofs are reduced-resolution and watermarked; clean production artwork is never shown publicly.",
+    },
   ],
 });
