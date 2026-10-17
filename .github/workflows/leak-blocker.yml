@@ -52,18 +52,22 @@ jobs:
           zero=0000000000000000000000000000000000000000
           if [ "$EVENT" = "pull_request" ]; then
             range="$PR_BASE..$PR_HEAD"
-          elif [ -n "$BEFORE" ] && [ "$BEFORE" != "$zero" ] \
-               && git cat-file -e "$BEFORE^{commit}" 2>/dev/null \
+          elif [ -n "$BEFORE" ] && [ "$BEFORE" != "$zero" ]; then
+            if git cat-file -e "$BEFORE^{commit}" 2>/dev/null \
                && git merge-base --is-ancestor "$BEFORE" "$AFTER"; then
-            # Normal push: only the commits it added.
-            range="$BEFORE..$AFTER"
+              # Normal push: only the commits it added.
+              range="$BEFORE..$AFTER"
+            else
+              # Force-push or reset: scan the full history. Audited
+              # findings are listed in .gitleaksignore.
+              range="$AFTER"
+            fi
           elif git rev-parse -q --verify "origin/$DEFAULT_BRANCH" >/dev/null \
                && [ -n "$(git rev-list "origin/$DEFAULT_BRANCH..$AFTER")" ]; then
             # New branch: everything it adds on top of the default branch.
             range="origin/$DEFAULT_BRANCH..$AFTER"
           else
-            # Force-push or first push: scan the full history. Audited
-            # findings are listed in .gitleaksignore.
+            # First push of the default branch: scan the full history.
             range="$AFTER"
           fi
           echo "Scanning: $range"
