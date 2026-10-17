@@ -1,0 +1,10 @@
+# Leak Blocker rules: gitleaks' built-in detectors (150+ services).
+# No folder is exempt. The individual findings reviewed in the 2026-10-17
+# audit (test fixtures, examples, placeholders) are listed one by one in
+# .gitleaksignore. For a new intentional fake value, add a
+# `gitleaks:allow` comment on that line. Real keys belong in your host's
+# environment settings (Render, Vercel, GitHub Secrets), never in the repo.
+title = "Leak Blocker"
+
+[extend]
+useDefault = true
