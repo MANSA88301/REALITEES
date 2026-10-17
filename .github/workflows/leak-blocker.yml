@@ -50,7 +50,10 @@ jobs:
           zero=0000000000000000000000000000000000000000
           if [ "$EVENT" = "pull_request" ]; then
             range="$PR_BASE..$PR_HEAD"
-          elif [ -n "$BEFORE" ] && [ "$BEFORE" != "$zero" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+          elif [ -n "$BEFORE" ] && [ "$BEFORE" != "$zero" ] \
+               && git cat-file -e "$BEFORE^{commit}" 2>/dev/null \
+               && git merge-base --is-ancestor "$BEFORE" "$AFTER"; then
+            # Normal push: only the commits it added.
             range="$BEFORE..$AFTER"
           elif git rev-parse -q --verify "origin/$DEFAULT_BRANCH" >/dev/null \
                && [ -n "$(git rev-list "origin/$DEFAULT_BRANCH..$AFTER")" ]; then
