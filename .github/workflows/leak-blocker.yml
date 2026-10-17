@@ -19,6 +19,8 @@ concurrency:
 jobs:
   gitleaks:
     name: Scan new commits for secrets
+    # A branch deletion adds no content; skip it.
+    if: github.event_name != 'push' || !github.event.deleted
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
